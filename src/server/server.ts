@@ -22,7 +22,7 @@ io.on('connection', (socket: socketIO.Socket) => {
   socket.on(`playerChoice-${socket.id}`, (choice: Number) => {
     players[socket.id] = {
       id: socket.id,
-      choice: choice,
+      name: choice,
     };
     console.log(players);
     // count the connected users
@@ -38,14 +38,14 @@ io.on('connection', (socket: socketIO.Socket) => {
   socket.on(`playerTurn-${socket.id}`, (turn: Number) => {
     if (Number(turn) === 1) {
       console.log('==========================================');
-      console.log(`GAME ENDED - player ${players[socket.id].choice} won!`);
+      console.log(`GAME ENDED - player ${players[socket.id].name} won!`);
       console.log('==========================================');
 
-      io.emit('gameEnded', players[socket.id].choice);
+      io.emit('gameEnded', players[socket.id].name);
       return;
     }
 
-    console.log(`====> player ${players[socket.id].choice} turn was [${turn}]`);
+    console.log(`====> player ${players[socket.id].name} turn was [${turn}]`);
     const otherPlayerSocketId = Object.keys(players).filter(
       (player) => player !== socket.id,
     )[0];

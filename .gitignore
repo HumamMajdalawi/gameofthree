@@ -1,5 +1,5 @@
 *.js
-!jest.config.js
+.DS_Store
 *.d.ts
 node_modules
 .env

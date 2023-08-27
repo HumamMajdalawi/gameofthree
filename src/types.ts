@@ -4,5 +4,5 @@ export type Players = {
 
 export type Player = {
   id: string;
-  choice: Number;
+  name: Number;
 };

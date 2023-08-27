@@ -33,7 +33,7 @@ socket.on('connect', () => {
       });
     } else {
       // If first player choose 1 then you are 2 or vice versa
-      const existingPlayer = players[Object.keys(players)[0]].choice;
+      const existingPlayer = players[Object.keys(players)[0]].name;
       console.log(`Player ${existingPlayer} is already connected`);
       currentPlayer = existingPlayer === 1 ? 2 : 1;
       console.log(`You are player ${currentPlayer}`);
