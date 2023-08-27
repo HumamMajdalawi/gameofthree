@@ -1,19 +1,19 @@
 # gameofthree
 
-# Requirments
+# Requirements
 
-When a player initiates the game, they send a random whole number to their opponent. The receiving player adjusts the number by -1, 0, or 1 to make it divisible by 3. After division, the new number is sent back. The game continues until a player reaches 1.
+Player 1 initiates the game, by making the first turn and send a random whole number to their opponent. The receiving player adjusts the number by -1, 0, or 1 to make it divisible by 3. After division, the remainder is sent back. The game continues until a player reaches 1.
 
 # Solution
 
 Develop a WebSocket server responsible for handling communication between clients and managing their states. client connect to serve via "connect" channel and server "connection" listener. all other comunction done via custome socket channels.
 
-- whichPlayer : client ask server which player am I, 1 or 2?.
-- whichPlayerAnswer: server ask client to choose 1 or 2?
-- playerChoice: client inform server about his choice
-- ready: server ask client to start the game
+- whichPlayer : client asks server to get info about all players connected
+- whichPlayerAnswer: server emits an event with the player list as a payload
+- playerChoice: client informs server if it's player 1 or 2. If `whichPlayerAnswer` shows that there are no other players connected, the player can choose to be player 1 or 2. For the second client that connects the choice is done automatically(with what is left)
+- ready: server ask client to start the game. The client that is player 1 starts first
 - playerTurn: client inform server about his move
-- gameEnded: server inform clients game ended
+- gameEnded: server inform clients game ended and who is the winner
 
 # Diagram
 
@@ -36,5 +36,7 @@ Develop a WebSocket server responsible for handling communication between client
 
 # How to run it
 
-- "npm run start:server" Running server to accept clients
-- "npm run start:client" Running client
+- "npm install" Install Dependencies
+- "npm run start-server" Running server to accept clients
+- "npm run start-client" Running 1st client
+- "npm run start-client" Running 2nd client
